@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {COURSES} from '../db-data';
+import { COURSES } from '../db-data';
+
 
 @Component({
     selector: 'app-root',

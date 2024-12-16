@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'course-card',
   imports: [],
@@ -8,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class CourseCardComponent {
 
+  onClick() {
+    alert("test!")
+  }
 }
+
+
