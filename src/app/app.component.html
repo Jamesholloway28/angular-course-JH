@@ -3,15 +3,21 @@
     <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 
 </div>
+<div>
+    <div class="courses">
 
-<div class="courses">
+        @for(course of courses; track course.id; let index = $index; let count = $count; let first = $first; let last =
+        $last; let even = $even; let odd = $odd){
+
+        <course-card [course]="course" [index]="index" [class.is-first]="first" [class.is-last]="last"
+            [class.is-even]="even" [class.is-odd]="odd" (courseSelected)="onCourseSelected($event)" />
+
+        }
+
+        @empty{
+        <h1>No Courses found!</h1>
+        }
 
 
-    <course-card [course]="coreCourse" (courseSelected)="onCourseSelected($event)" />
-    <course-card [course]="coreCourse" (courseSelected)="onCourseSelected($event)" />
-
-
-
-
-
+    </div>
 </div>

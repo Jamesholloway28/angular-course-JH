@@ -43,7 +43,7 @@ course-card.is-first {
 
 course-card.is-last {
   border-bottom: 2px solid grey;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 course-card.is-even {

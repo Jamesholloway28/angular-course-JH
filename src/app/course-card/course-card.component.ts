@@ -11,11 +11,13 @@ import { EventEmitter } from '@angular/core';
 })
 export class CourseCardComponent {
 
-  @Input({
-    required: true
-  }
-  )
+  @Input({ required: true })
   course: Course;
+
+  @Input({ required: true })
+  index: number;
+
+
 
   @Output()
   courseSelected = new EventEmitter<Course>();

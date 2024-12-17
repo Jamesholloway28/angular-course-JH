@@ -12,24 +12,20 @@ import { Course } from './model/course';
 export class AppComponent {
 
   courses = COURSES;
-  coreCourse = COURSES[0];
-  rxjsCourse = COURSES[1];
-  ngrxCourse = COURSES[2];
 
   onCourseSelected(course: Course) {
     console.log('the course card was clicked', course);
-
   }
 
-  data = {
-    title: 'Angular Core Deep Dive'
-  }
-  onLogoClicked() {
-    alert("Hello World!")
-  }
+  // data = {
+  //   title: 'Angular Core Deep Dive'
+  // }
+  // onLogoClicked() {
+  //   alert("Hello World!")
+  // }
 
-  onKeyUp(newTitle: string) {
-    // console.log(this);
-    this.data.title = newTitle;
-  }
+  // onKeyUp(newTitle: string) {
+  //   // console.log(this);
+  //   this.data.title = newTitle;
+  // }
 }
