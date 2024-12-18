@@ -1,12 +1,72 @@
-<div class="course-card">
+<div class="course-card" [ngClass]="cardClasses()" #container>
+    <!-- <div class="course-card" *ngIf="course"> hides card if there is an error with one of them -->
 
-    <div class="course-title">
+    <div class="course-title" [ngStyle]="cardStyles()">
+        <!-- {{ course.description }} -->
+        <!-- //commented out for single course card example -->
         {{index}} {{ course.description }}
-    </div>
-    <img width="300" alt="Angular Logo" (click)="onClick()" [src]="course.iconUrl">
+        <!-- for ngFor -->
+        <!-- {{cardIndex + ' '+ course.description }} -->
+        <!-- elvis -->
+        <!-- {{cardIndex + ' '+ course?.description }} -->
 
-    <div class="course-description">
-        {{course.longDescription}}
+
     </div>
+
+    <!-- commented out for image demo -->
+    <!-- @if(course.id ==1 && !course.iconUrl){
+    <h2>Course With ID 1 detected!</h2>
+    }
+
+    @else if(course.iconUrl){
+    <img [src]="course.iconUrl" width="300" alt="Angular Logo" (click)="onClick()">
+    }
+    @else {
+    <h2>No Image Available!</h2>
+    } -->
+    <!-- ngIf -->
+    <!-- <img [src]="course.iconUrl" *ngIf="isImageVisible(); else noImage" width="300" alt="Angular Logo"
+        (click)="onClick()">
+
+    <ng-template #noImage>
+        <p>No Image is available.</p>
+    </ng-template> -->
+    <ng-template #blankImage>
+
+        <p class="warn">{{course.description}} has NO image is available yet</p>
+        <img src="/assets/empty-image.png" alt="default image">
+
+    </ng-template>
+
+    <!-- content projection -->
+    <ng-content select="course-image" *ngIf="course.iconUrl; else blankImage"></ng-content>
+    <ng-content select=".course-description"></ng-content>
+
+
+    <div class="course-category">
+        @switch(course.category){
+        @case ("BEGINNER"){
+        <div class="category">Beginner</div>
+        }
+        @case ("INTERMEDIATE"){
+        <div class="category">Intermediate</div>
+        }
+        @case ("ADVANCED"){
+        <div class="category">Advanced</div>
+        }
+        @default{
+        <div class="category">Unknown</div>
+        }
+        }
+    </div>
+
+    <!-- ngSwitch -->
+    <!-- <div class="course-category" [ngSwitch]="course.category">
+        <div class="category" *ngSwitchCase="'BEGINNER'">Beginner</div>
+        <div class="category" *ngSwitchCase="'INTERMEDIATE'">Intermediate</div>
+        <div class="category" *ngSwitchCase="'ADVANCED'">Advanced</div>
+        <div class="category" *ngSwitchDefault>All Levels</div>
+
+    </div> -->
     <button (click)="onCourseViewed()">View Course</button>
 </div>

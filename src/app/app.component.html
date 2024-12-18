@@ -3,14 +3,43 @@
     <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 
 </div>
+
+
+<div class="demo">
+    <!-- pipes -->
+    <div>Start Date: {{startDate | date: 'MMM/dd/yyyy'}}</div>
+    <div>{{title | titlecase}}</div>
+    <div>{{price | currency : 'EUR'}}</div>
+    <div>Percentage: {{rate | percent}}</div>
+    <hr>
+    <div *ngFor="let pair of course0 | keyvalue">
+        {{ pair.key + ': ' + pair.value}}
+    </div>
+</div>
+
+
+
 <div>
-    <div class="courses">
 
-        @for(course of courses; track course.id; let index = $index; let count = $count; let first = $first; let last =
-        $last; let even = $even; let odd = $odd){
+    <button type="button" (click)="onCoursesEdited()">Edit Courses</button>
+    <div class="courses" #container>
+        <!-- //commented out for single course card example -->
 
-        <course-card [course]="course" [index]="index" [class.is-first]="first" [class.is-last]="last"
-            [class.is-even]="even" [class.is-odd]="odd" (courseSelected)="onCourseSelected($event)" />
+        @for(course of courses; track trackCourse(index, course); let index = $index; let count = $count; let first =
+        $first; let last = $last; let even = $even; let odd = $odd){
+
+        <course-card [course]="course" [index]="index+1" [class.is-first]="first" [class.is-last]="last"
+            [class.is-even]="even" [class.is-odd]="odd" (courseSelected)="onCourseSelected($event)">
+
+            <course-image [src]="course.iconUrl"></course-image>
+
+            <div class="course-description">
+                {{course.longDescription}}
+                <!-- elvis -->
+                <!-- {{course?.longDescription}} -->
+
+            </div>
+        </course-card>
 
         }
 
@@ -18,6 +47,17 @@
         <h1>No Courses found!</h1>
         }
 
+        <!-- #cardRef is a template reference -->
+        <!-- <course-card #cardRef1 [course]="courses[0]" (courseSelected)="onCourseSelected($event)" />
+        <course-card #cardRef2 [course]="courses[1]" (courseSelected)="onCourseSelected($event)" /> -->
+
+
+
+        <!-- ngFor: -->
+        <!-- <course-card
+            *ngFor="let course of courses; index as i; first as isFirst; last as isLast; even as isEven; odd as isOdd;"
+            [cardIndex]="i+1" [course]="course" [class.is-first]="isFirst" [class.is-last]="isLast"
+            [class.is-even]="isEven" [class.is-odd]="isOdd" (courseSelected)="onCourseSelected($event)" /> -->
 
     </div>
 </div>
