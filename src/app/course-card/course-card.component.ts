@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChild, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, Input, Output, TemplateRef } from '@angular/core';
 import { Course } from '../model/course';
 import { EventEmitter } from '@angular/core';
 import { CommonModule,/*NgClass, NgIf*/ } from '@angular/common';
@@ -20,6 +20,10 @@ export class CourseCardComponent implements AfterViewInit {
   //commented out for single course card example -->
   @Input({ required: true })
   index: number;
+
+  @Input({ required: true })
+  noImageTpl: TemplateRef<any>;
+
 
   //can only see top part of the content part of the component instance in question
   @ContentChild(CourseImageComponent)

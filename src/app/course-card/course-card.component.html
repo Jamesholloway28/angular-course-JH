@@ -31,16 +31,16 @@
     <ng-template #noImage>
         <p>No Image is available.</p>
     </ng-template> -->
-    <ng-template #blankImage>
-
-        <p class="warn">{{course.description}} has NO image is available yet</p>
-        <img src="/assets/empty-image.png" alt="default image">
-
-    </ng-template>
 
     <!-- content projection -->
-    <ng-content select="course-image" *ngIf="course.iconUrl; else blankImage"></ng-content>
+    <ng-content select="course-image" *ngIf="course.iconUrl; else noImage"></ng-content>
     <ng-content select=".course-description"></ng-content>
+
+    <ng-template #noImage>
+
+        <ng-container *ngTemplateOutlet="noImageTpl;context: {description:course.description}"></ng-container>
+
+    </ng-template>
 
 
     <div class="course-category">

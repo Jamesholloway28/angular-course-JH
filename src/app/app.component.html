@@ -22,14 +22,28 @@
 <div>
 
     <button type="button" (click)="onCoursesEdited()">Edit Courses</button>
+
     <div class="courses" #container>
+
+        <ng-template #blankImage let-courseName="description">
+
+            <p class="warn">{{courseName}} has NO image is available yet</p>
+            <img src="/assets/empty-image.png" alt="default image">
+
+        </ng-template>
+        <!-- 
+        <ng-container *ngTemplateOutlet="blankImage; context: {description: courses[0].description}">
+
+        </ng-container> -->
+
         <!-- //commented out for single course card example -->
 
         @for(course of courses; track trackCourse(index, course); let index = $index; let count = $count; let first =
         $first; let last = $last; let even = $even; let odd = $odd){
 
-        <course-card [course]="course" [index]="index+1" [class.is-first]="first" [class.is-last]="last"
-            [class.is-even]="even" [class.is-odd]="odd" (courseSelected)="onCourseSelected($event)">
+        <course-card [course]="course" [index]="index+1" [noImageTpl]="blankImage" [class.is-first]="first"
+            [class.is-last]="last" [class.is-even]="even" [class.is-odd]="odd"
+            (courseSelected)="onCourseSelected($event)">
 
             <course-image [src]="course.iconUrl"></course-image>
 
